@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 
-class SMSPage extends Component{
+class DispensaryPage extends Component{
   constructor(props) {
     super(props);
     this.state = ({code: '', error: ''});
@@ -16,10 +16,10 @@ class SMSPage extends Component{
   render(){
     return(
       <div className='content _v_screens' id="smsVerificationPage">
-        <h1 className='heading'>Text Verification</h1>
-        <p className='tagline'>Enter 4 digit code which has been texted to your number.</p>
+        <h1 className='heading'>Beta Registration</h1>
+        <p className='tagline'>Please enter the 6 digit code given to you by your dispensary</p>
         <form onSubmit={this.handleSubmit}>
-          <input type="number" name="code" placeholder="Verification Code" value={this.state.code} onChange={this.handleValChange} />
+          <input type="number" name="code" placeholder="6 digit code inputs here" value={this.state.code} onChange={this.handleValChange} />
           <span className="field__error">{this.state.error}</span>
           <button type="submit" className="a-btn btn-green" onClick={this.handleSubmit}>Submit</button>          
         </form>
@@ -62,4 +62,4 @@ class SMSPage extends Component{
 
   }
 }
-export default SMSPage;
+export default DispensaryPage;

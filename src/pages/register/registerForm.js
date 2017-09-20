@@ -23,7 +23,6 @@ xhr.addEventListener("readystatechange", function () {
 xhr.open("POST", "https://budsy-staging.mybluemix.net/api/v0/auth/customer/email/register/");
 xhr.setRequestHeader("content-type", "application/json");
 xhr.setRequestHeader("cache-control", "no-cache");
-xhr.setRequestHeader("postman-token", "90cc398f-3d59-6cd7-b4b7-9511b0441c5c");
 xhr.send(data);
 
 }
@@ -69,9 +68,9 @@ const RegisterForm = (props) => {
         component={renderField} label="Lastname"
         validate={[ required ]}
       />   
-      <Field name="phone" type="number"
+      <Field name="phone" type="text"
         component={renderField} label="Phone Number"
-        validate={[ required, phoneNumber ]}
+        validate={[ required ]}
       />
       <Field name="email" type="email"
         component={renderField} label="Email Address"

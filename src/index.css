@@ -64,7 +64,28 @@ input[type="email"]{
 	margin: 0 auto 10px;
 	letter-spacing: 1.5px;
 }
-.buttons-box a:hover{
+.a-btn{
+  color:#FFFFFF;
+  font-size: 4.3vw;
+  display: block;
+  height: 60px;
+  line-height: 62px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer; 
+  margin: 0 auto 10px;
+  letter-spacing: 1.5px;
+  appearance: none;
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  font-family: "Bebas Neue Regular", Helvetica, Arial, sans-serif;
+  margin-top: 20px;
+}
+.a-btn.btn-green{
+  background: #6EC572;
+}
+.buttons-box a:hover, .a-btn:hover{
 	opacity: 0.9;
 }
 #homePage{
@@ -137,7 +158,7 @@ input[type="email"]{
   font-size: 3.12vw;
   color: #7f7f7f;
   line-height: 2;
-  padding-bottom: 10vw;
+  padding-bottom: 10vh;
   font-family: 'Lato', sans-serif;
 }
 #registerPage .fbregister{
@@ -184,4 +205,21 @@ input[type="email"]{
 	display: block;
 	margin-top: -10px;
     margin-bottom: 10px;
+}
+._v_screens .heading{
+  font-size: 5.04vw;
+  text-transform: uppercase;
+  color: #0d1329;
+  padding: 2vh 0 7vh;
+  letter-spacing: 2px;
+}
+._v_screens .tagline{
+  font-size: 3.12vw;
+  color: #7f7f7f;
+  line-height: 2;
+  padding-bottom: 5vh;
+  font-family: 'Lato', sans-serif;
+}
+#smsVerificationPage .a-btn{
+  margin-top: 30px;
 }
