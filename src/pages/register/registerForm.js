@@ -22,7 +22,6 @@ xhr.addEventListener("readystatechange", function () {
 });
 xhr.open("POST", "https://budsy-staging.mybluemix.net/api/v0/auth/customer/email/register/");
 xhr.setRequestHeader("content-type", "application/json");
-xhr.setRequestHeader("cache-control", "no-cache");
 xhr.send(data);
 
 }
