@@ -19,14 +19,13 @@ class ButtonSetupPage extends Component{
         <div class="inner_content">
           <p className='tagline'>Before we get started we have a few questions we need you to answer</p>   
           <div className="_">
-            <h2></h2>
+            <h2>Setup</h2>
           </div>
         </div>             
       </div>
     )    
   }
-  handleSubmit(e, values){
-    
+  handleSubmit(e, values){    
 
   }
 }

@@ -56,15 +56,15 @@ const RegisterForm = (props) => {
         validate={[ required ]}
       />
       <Field name="password" type="password"
-        component={renderField} label="password"
+        component={renderField} label="Password"
         validate={[ required, passwordMinLength ]}
       />   
       <Field name="first_name" type="text"
-        component={renderField} label="Firstname"
+        component={renderField} label="First Name"
         validate={[ required ]}
       /> 
       <Field name="last_name" type="text"
-        component={renderField} label="Lastname"
+        component={renderField} label="Last Name"
         validate={[ required ]}
       />   
       <Field name="phone" type="text"
