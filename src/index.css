@@ -10,6 +10,7 @@
     font-style: normal;
     font-stretch: normal;
 }
+html{ height: 100vh; }
 body {
   margin: 0;
   padding: 0;
@@ -17,6 +18,13 @@ body {
 }
 *{
 	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.clearfix:after{
+  content: '';
+  clear: both;
+  display: block;
 }
 a{
 	text-decoration: none;
@@ -223,3 +231,20 @@ input[type="email"]{
 #smsVerificationPage .a-btn{
   margin-top: 30px;
 }
+/*Setup Screens*/
+._setup_screen{ padding: 0; background: #0D1329;}
+._setup_screen .heading{ font-size: 5.6vw; padding: 2vh 0; background: #ffffff; letter-spacing: 1px;}
+._setup_screen .inner_content{ padding: 0 8vw; }
+._setup_screen .inner_content .tagline{ font-size: 3.47vw; color: #9da1b1; font-family: 'Lato', sans-serif; margin-top: 6.3vh; margin-bottom: 7vh; }
+._options_box{ text-align: left; margin-bottom: 3.3vh;  }
+._options_box h2{ color: #fff; font-size: 4.4vw; letter-spacing: 1px; }
+._options_box ul{ list-style: none; margin-top: 3vh; }
+._options_box ul li{ float: left; width: 47%; height: 9vh; margin-left: 6%; background-color: #31374d; color: #ffffff; font-family: 'Lato', sans-serif; border-radius: 5px; cursor: pointer; margin-bottom: 12px;}
+._options_box ul li:first-child{ margin-left: 0; }
+._options_box ul li label{ display: block; height: 100%; line-height: 9vh; padding-left: 18px; border-radius: 5px;}
+._options_box ul li input{ display: none; }
+._options_box ul li input:checked+label{ background: #ffffff; color: #31374d; }
+._options_box ul li.disabled{ opacity: 0.5; cursor: not-allowed; }
+._options_box ul li.disabled label{pointer-events: none; }
+#buttonSetup ._nxt_button{ margin-top: 18vh; }
+.white{color: #ffffff;}

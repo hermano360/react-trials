@@ -1,29 +1,57 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class ButtonSetupPage extends Component{
   constructor(props) {
     super(props);
-    console.log('constructor')
-    // this.state = ({buttonId: '', error: ''});
-    // this.handleValChange = this.handleValChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = ({receive: 'No', btnType: 'Wifi'});
+    this.btnReceiveStatus = this.btnReceiveStatus.bind(this);
+    this.btnTypeChange = this.btnTypeChange.bind(this);
   }  
-  handleValChange(e){
-    // this.setState({buttonId: e.target.value});
+  btnReceiveStatus(e){
+    this.setState({receive: e.target.firstChild.nodeValue});
+  } 
+  btnTypeChange(e){
+    this.setState({btnType: e.target.firstChild.nodeValue});
   }
   render(){
+    var receiveStatus = '';
+    var redirectTo = '/login';
+    if(this.state.receive === 'No'){
+      receiveStatus = 'disabled';    
+    }else{
+      receiveStatus = 'enabled';  
+      if(this.state.btnType === 'Wifi'){
+        redirectTo = '/button-registration';        
+      }else{
+        redirectTo = '/login';  
+      }
+    }
+       
     return(
       <div className='content _setup_screen' id="buttonSetup">
         <h1 className='heading'>Button Setup</h1>
-        <div class="inner_content">
+        <div className="inner_content">
           <p className='tagline'>Before we get started we have a few questions we need you to answer</p>   
-          <div className="_">
-            <h2>Setup</h2>
+          <div className="_options_box">
+            <h2>Did you receive your button?</h2>
+            <ul className="clearfix">
+              <li><input type="radio" value="No" name="btn-receive" id="receive-no"/><label htmlFor="receive-no" onClick={this.btnReceiveStatus}>No</label></li>
+              <li><input type="radio" value="Yes" name="btn-receive" id="receive-yes" /><label htmlFor="receive-yes" onClick={this.btnReceiveStatus}>Yes</label></li>
+            </ul>
           </div>
+          <div className="_options_box">
+            <h2>What kind of button is it?</h2>
+            <ul className="clearfix">
+              <li className={receiveStatus}><input type="radio" value="Wifi" name="btn-kind" id="type-wifi" /><label htmlFor="type-wifi" onClick={this.btnTypeChange}>Wifi</label></li>
+              <li className={receiveStatus}><input type="radio" value="GSM" name="btn-kind" id="type-gsm"  className="disabled"/><label htmlFor="type-gsm" onClick={this.btnTypeChange}>GSM</label></li>
+            </ul>
+          </div>
+          <Link to={redirectTo} className="a-btn btn-green _nxt_button">Next</Link>
         </div>             
       </div>
-    )    
+      )
+      
   }
   handleSubmit(e, values){    
 
