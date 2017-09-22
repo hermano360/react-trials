@@ -75,7 +75,7 @@ input[type="email"]{
 	margin: 0 auto 10px;
 	letter-spacing: 1.5px;
 }
-.a-btn{
+.a-btn, .slick-next{
   color:#FFFFFF;
   font-size: 4.3vw;
   display: block;
@@ -98,6 +98,22 @@ input[type="email"]{
 }
 .buttons-box a:hover, .a-btn:hover{
 	opacity: 0.9;
+}
+._form_success{
+  background: #333333;
+  color: #fff;
+  padding: 5px 10px;
+  font-family: Lato;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 #homePage{
 	background: url(./images/splash-bg.jpg) no-repeat;
@@ -250,13 +266,30 @@ input[type="email"]{
 ._options_box ul li.disabled{ opacity: 0.5; cursor: not-allowed; }
 ._options_box ul li.disabled label{pointer-events: none; }
 #buttonSetup ._nxt_button{ margin-top: 18vh; }
-.stepsContainer .upperSection img.setupBg{ width: 100%; }
+.stepsContainer .upperSection{ position: relative; }
+.stepsContainer .upperSection img.setupBg{ width: 100%;}
+.stepsContainer .upperSection .stepsIcon{ width: 23vw; position: absolute; bottom: -2.1vh; left: 38.5vw; }
+.stepsContainer .step-3 .upperSection .stepsIcon{ width: 38.4vw; left: 30.8vw; bottom: -3.6vh; }
+.stepsContainer .step-4 .upperSection img{visibility: hidden;}
+.stepsContainer .step-4 .upperSection span{ position: absolute; left: 0; color: #6EC572; font-family: 'Lato'; font-size: 6vw; width: 100%; top: 25.5vh;}
 .stepsContainer .lowerSection{ padding: 0 8vw; }
 .stepsContainer .stepsCount{ color: #9DA1B1; font-size: 4.8vw; margin-top: 12.5vh; }
 .stepsContainer .stepsCount ._active{ color: #ffffff; }
-.stepsContainer p.tagline{ margin-top: 2.5vh !important; }
+.stepsContainer p.tagline{ margin-top: 2.5vh !important; margin-bottom: 5vh !important; }
 .slick-list{ overflow: hidden; }
 .slick-slide { float: left; height: 100%; min-height: 1px; }
 .slick-dots li{ display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #464c5c; font-size: 0; margin: 0 4px; overflow: hidden; margin-top: 20px; vertical-align: top;}
 .slick-dots li.slick-active{ background: #ffffff; }
 .slick-dots li button{ visibility: hidden; }
+.slick-prev{ display: none !important; }
+.slick-next{ background: #6EC572; width: 84vw; margin-top: 0; outline: none; }
+
+
+/*.App-logo {
+  animation: App-logo-spin infinite 5s linear;
+  height: 80px;
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}*/

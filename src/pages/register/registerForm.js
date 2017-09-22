@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 
 function submit(values){
   console.log(values);
-  
 // var data = null;
 var data = JSON.stringify(values)
 var xhr = new XMLHttpRequest();
@@ -17,6 +16,8 @@ xhr.addEventListener("readystatechange", function () {
       console.log('failed');      
     }else{
       console.log('success');
+      window.location.href = "/sms-verification"
+      localStorage.setItem('userAuthToken', JSON.parse(response).token);
     }
   }
 });
@@ -27,11 +28,11 @@ xhr.send(data);
 }
 
 const required = value => value ? undefined : '*Required';
-// const maxLength = max => value =>
-//   value && value.length > max ? `Must be ${max} characters or less` : undefined;
+const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} digits` : undefined;
 const minLength = min => value =>
   value && value.length < min ? `Must be >${min} digits` : undefined;
-// const maxLength15 = maxLength(15);
+const maxLength13 = maxLength(13);
 const passwordMinLength = minLength(6);
 const email = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Invalid email address' : undefined;
@@ -66,10 +67,14 @@ const RegisterForm = (props) => {
       <Field name="last_name" type="text"
         component={renderField} label="Last Name"
         validate={[ required ]}
-      />   
+      />  
+      <Field name="address" type="text"
+        component={renderField} label="Address"
+        validate={[ required ]}
+      /> 
       <Field name="phone" type="text"
         component={renderField} label="Phone Number"
-        validate={[ required ]}
+        validate={[ required, maxLength13 ]}
       />
       <Field name="email" type="email"
         component={renderField} label="Email Address"

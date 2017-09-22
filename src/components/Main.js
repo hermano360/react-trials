@@ -8,6 +8,7 @@ import BetaRegistration from '../pages/dispensary/page';
 import ButtonSetup from '../pages/button/setup';
 import ButtonRegistration from '../pages/button/registration';
 import SetupSteps from '../pages/button/setupSteps';
+import Order from '../pages/order/page';
 
 
 const Main = () => (
@@ -21,6 +22,7 @@ const Main = () => (
       <Route path='/button-setup' name="button setup" component={ButtonSetup}/>
       <Route path='/button-registration' name="button registration" component={ButtonRegistration}/>
       <Route path='/setup-steps' name="button setup step one" component={SetupSteps}/>
+      <Route path='/order' name="order" component={Order}/>
     </Switch>
   </main>
 )

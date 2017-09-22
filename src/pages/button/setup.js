@@ -16,7 +16,7 @@ class ButtonSetupPage extends Component{
   }
   render(){
     var receiveStatus = '';
-    var redirectTo = '/login';
+    var redirectTo = '/order';
     if(this.state.receive === 'No'){
       receiveStatus = 'disabled';    
     }else{
@@ -24,7 +24,7 @@ class ButtonSetupPage extends Component{
       if(this.state.btnType === 'Wifi'){
         redirectTo = '/button-registration';        
       }else{
-        redirectTo = '/login';  
+        redirectTo = '/order';  
       }
     }
        

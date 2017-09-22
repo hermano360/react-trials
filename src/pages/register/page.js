@@ -15,7 +15,7 @@ const store = (window.devToolsExtension
 
 class RegisterPage extends Component{
   render(){
-    console.log('code push - 21sep2017');
+    console.log('code push - 23sep2017');
     return(
       <div className='content' id="registerPage">
         <div className='logo-icon'><Link to="/"><img src={logo} alt="Budsy"/></Link></div>
@@ -27,9 +27,8 @@ class RegisterPage extends Component{
 	    <p className='oroption'><span>or</span></p>
         <Provider store={store}>
           <RegisterForm></RegisterForm>
-        </Provider>
-        
-          <p className='signin'>Don't have an account? <Link to="/login" className='signinlink'>Sign in</Link></p>
+        </Provider>        
+        <p className='signin'>Don't have an account? <Link to="/login" className='signinlink'>Sign in</Link></p>
       </div>
     )    
   }
