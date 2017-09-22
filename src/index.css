@@ -74,6 +74,7 @@ input[type="email"]{
 	cursor: pointer; 
 	margin: 0 auto 10px;
 	letter-spacing: 1.5px;
+  outline: none;
 }
 .a-btn, .slick-next{
   color:#FFFFFF;
@@ -92,6 +93,7 @@ input[type="email"]{
   border: none;
   font-family: "Bebas Neue Regular", Helvetica, Arial, sans-serif;
   margin-top: 20px;
+  outline: none;
 }
 .a-btn.btn-green{
   background: #6EC572;
