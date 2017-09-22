@@ -1,12 +1,14 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Home from '../pages/home/page'
-import Login from '../pages/login/page'
-import Register from '../pages/register/page'
-import SmsVerification from '../pages/sms/page'
-import BetaRegistration from '../pages/dispensary/page'
-import ButtonSetup from '../pages/button/setup'
-import ButtonRegistration from '../pages/button/registration'
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Home from '../pages/home/page';
+import Login from '../pages/login/page';
+import Register from '../pages/register/page';
+import SmsVerification from '../pages/sms/page';
+import BetaRegistration from '../pages/dispensary/page';
+import ButtonSetup from '../pages/button/setup';
+import ButtonRegistration from '../pages/button/registration';
+import SetupSteps from '../pages/button/setupSteps';
+
 
 const Main = () => (
   <main>
@@ -18,6 +20,7 @@ const Main = () => (
       <Route path='/beta-registration' name="beta registration" component={BetaRegistration}/>
       <Route path='/button-setup' name="button setup" component={ButtonSetup}/>
       <Route path='/button-registration' name="button registration" component={ButtonRegistration}/>
+      <Route path='/setup-steps' name="button setup step one" component={SetupSteps}/>
     </Switch>
   </main>
 )

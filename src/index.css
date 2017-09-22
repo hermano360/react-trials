@@ -26,6 +26,9 @@ body {
   clear: both;
   display: block;
 }
+.no-padding{
+  padding: 0 !important;
+}
 a{
 	text-decoration: none;
 	color: green;
@@ -235,7 +238,7 @@ input[type="email"]{
 ._setup_screen{ padding: 0; background: #0D1329;}
 ._setup_screen .heading{ font-size: 5.6vw; padding: 2vh 0; background: #ffffff; letter-spacing: 1px;}
 ._setup_screen .inner_content{ padding: 0 8vw; }
-._setup_screen .inner_content .tagline{ font-size: 3.47vw; color: #9da1b1; font-family: 'Lato', sans-serif; margin-top: 6.3vh; margin-bottom: 7vh; }
+._setup_screen .inner_content .tagline{ font-size: 3.47vw; color: #9da1b1; font-family: 'Lato', sans-serif; margin-top: 6.3vh; margin-bottom: 7vh; line-height: 2; }
 ._options_box{ text-align: left; margin-bottom: 3.3vh;  }
 ._options_box h2{ color: #fff; font-size: 4.4vw; letter-spacing: 1px; }
 ._options_box ul{ list-style: none; margin-top: 3vh; }
@@ -247,4 +250,13 @@ input[type="email"]{
 ._options_box ul li.disabled{ opacity: 0.5; cursor: not-allowed; }
 ._options_box ul li.disabled label{pointer-events: none; }
 #buttonSetup ._nxt_button{ margin-top: 18vh; }
-.white{color: #ffffff;}
+.stepsContainer .upperSection img.setupBg{ width: 100%; }
+.stepsContainer .lowerSection{ padding: 0 8vw; }
+.stepsContainer .stepsCount{ color: #9DA1B1; font-size: 4.8vw; margin-top: 12.5vh; }
+.stepsContainer .stepsCount ._active{ color: #ffffff; }
+.stepsContainer p.tagline{ margin-top: 2.5vh !important; }
+.slick-list{ overflow: hidden; }
+.slick-slide { float: left; height: 100%; min-height: 1px; }
+.slick-dots li{ display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #464c5c; font-size: 0; margin: 0 4px; overflow: hidden; margin-top: 20px; vertical-align: top;}
+.slick-dots li.slick-active{ background: #ffffff; }
+.slick-dots li button{ visibility: hidden; }
