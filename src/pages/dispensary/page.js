@@ -47,6 +47,7 @@ class DispensaryPage extends Component{
     if(_this.state.code === ''){
       _this.setState({error: '*Required'});
     }else{
+      document.getElementById("_loader").className = '_show';
       var obj = {"code" : ""};    
       obj['code'] = _this.state.code;  
       var data = JSON.stringify(obj);
@@ -60,9 +61,11 @@ class DispensaryPage extends Component{
           if(response.status === 'Success'){
             _this.setState({error: '', success: <span className="_form_success">Code Verified</span>});
             setTimeout(function(){
+              document.getElementById("_loader").className = '';
               _this.setState({redirect: true});
             }, 1000);
           }else{
+            document.getElementById("_loader").className = '';
             if('code' in response){
               _this.setState({error: response.code});
             }else if('detail' in response){

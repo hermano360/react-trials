@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 function submit(values){
   console.log(values);
 // var data = null;
+document.getElementById("_loader").className = '_show';
 var data = JSON.stringify(values)
 var xhr = new XMLHttpRequest();
 xhr.addEventListener("readystatechange", function () {
@@ -14,8 +15,10 @@ xhr.addEventListener("readystatechange", function () {
     console.log(response);
     if(response.indexOf('non_field_errors') >= 0){
       console.log('failed');      
+      document.getElementById("_loader").className = '';
     }else{
       console.log('success');
+      document.getElementById("_loader").className = '';
       window.location.href = "/sms-verification"
       localStorage.setItem('userAuthToken', JSON.parse(response).token);
     }
