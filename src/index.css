@@ -56,6 +56,25 @@ header{
   top: 41%;
   left: 41%;
 }
+#_global_errors{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  padding: 15px 10px;
+  text-align: center;
+  background: #0D1329;
+  color: #ffffff;
+  font-family: Lato;
+  font-size: 13px;
+  top: -50%;
+  transition: all 0.6s ease-in-out;
+  display: block !important;
+}
+._global_errors{
+  top: 0 !important;
+}
 ._show{
   display: block !important;
 }

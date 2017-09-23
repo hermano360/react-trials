@@ -10,8 +10,12 @@ function submit(values) {
       // console.log(response);
       var response = this.responseText;
       if(response.indexOf('non_field_errors') >= 0){
-        console.log(JSON.parse(response).non_field_errors[0]);
+        document.getElementById("_global_errors").innerHTML = JSON.parse(response).non_field_errors[0];
         document.getElementById("_loader").className = '';
+        document.getElementById("_global_errors").className = '_global_errors';
+        setTimeout(function(){
+          document.getElementById("_global_errors").className = '';
+        }, 2000);
       }else{
         window.location.href = '/sms-verification';//in future change to order
         localStorage.setItem('userAuthToken', JSON.parse(response).auth_token);
