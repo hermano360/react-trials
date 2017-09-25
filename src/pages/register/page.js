@@ -5,6 +5,7 @@ import { createStore, combineReducers } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 import logo from '../../images/logo_icon.png';
 import RegisterForm from './registerForm';
+import FacebookLogin from 'react-facebook-login';
 // import styles from "./style.css";
 const reducer = combineReducers({
   form: reduxFormReducer, // mounted under "form"
@@ -21,9 +22,13 @@ class RegisterPage extends Component{
         <div className='logo-icon'><Link to="/"><img src={logo} alt="Budsy"/></Link></div>
         <h1 className='heading'>Create your budsy account</h1>
         <p className='tagline'>You're one step closer to getting your perfect highthat is personalized to you and your preferences.</p>
-        <div className="buttons-box">	        
-	        <a className='fbregister'>Register with facebook</a>
-	    </div>
+        <FacebookLogin
+          appId="815418658634255"
+          autoLoad={true}
+          fields="name,email,picture"
+          callback={this.responseFacebook}
+          cssClass="a-btn fblogin"
+          textButton="Register with facebook" />
 	    <p className='oroption'><span>or</span></p>
         <Provider store={store}>
           <RegisterForm></RegisterForm>

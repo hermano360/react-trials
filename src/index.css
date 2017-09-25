@@ -137,6 +137,9 @@ input[type="email"]{
 .a-btn.btn-green{
   background: #6EC572;
 }
+.fblogin{
+  background: #21548d !important;
+}
 .buttons-box a:hover, .a-btn:hover{
 	opacity: 0.9;
 }
@@ -198,10 +201,6 @@ input[type="email"]{
   text-transform: uppercase;
   color: #0d1329;
   padding: 6vh 0 4.5vh;
-}
-
-#loginPage .fblogin{
-  background: #21548d !important;
 }
 #loginPage .rtlogin{
   margin-top: 20px !important;

@@ -27,7 +27,6 @@ const LoginForm = props => {
       {error && <strong>{error}</strong>}      
       <div className="buttons-box">
         <a className='rtlogin' onClick={handleSubmit(submit)}>Login</a>
-        <a className='fblogin'>Login with facebook</a>
       </div>  
     </form>
   );
