@@ -29,7 +29,7 @@ class LoginPage extends Component{
           <LoginForm></LoginForm>
         </Provider>
         <FacebookLogin
-        appId="815418658634255"
+        appId="1450484624999997"
         autoLoad={true}
         fields="name,email,picture"
         callback={this.responseFacebook}
