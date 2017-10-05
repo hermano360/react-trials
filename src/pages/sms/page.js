@@ -18,6 +18,7 @@ class SMSPage extends Component{
   
   handleValChange(e){
     this.setState({code: e.target.value});
+
   }
   render(){
     if(this.state.redirect){
@@ -41,6 +42,7 @@ class SMSPage extends Component{
   }
   handleSubmit(e){
     e.preventDefault();  
+    // console.log(this.props.history.push('/'));
     var _this = this;   
     var authToken = 'Token ' + localStorage.getItem('userAuthToken'); 
     if(_this.state.code === ''){

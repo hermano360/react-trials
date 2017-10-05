@@ -16,7 +16,6 @@ const store = (window.devToolsExtension
 
 class RegisterPage extends Component{
   render(){
-    console.log('code push2- 23sep2017');
     return(
       <div className='content' id="registerPage">
         <div className='logo-icon'><Link to="/"><img src={logo} alt="Budsy"/></Link></div>

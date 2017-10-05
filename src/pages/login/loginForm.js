@@ -24,10 +24,8 @@ const LoginForm = props => {
         component={renderField} label="Password"
         validate={[ required ]}
       />
-      {error && <strong>{error}</strong>}      
-      <div className="buttons-box">
-        <a className='rtlogin' onClick={handleSubmit(submit)}>Login</a>
-      </div>  
+      {error && <strong>{error}</strong>} 
+      <input type="submit" value="Login" className="a-btn btn-green" onClick={handleSubmit(submit)} />
     </form>
   );
 };

@@ -2,6 +2,7 @@
 
 function submit(values) {
   console.log(values);
+  console.log(this);
   document.getElementById("_loader").className = '_show';
   var data = JSON.stringify(values)
   var xhr = new XMLHttpRequest();
@@ -17,7 +18,7 @@ function submit(values) {
           document.getElementById("_global_errors").className = '';
         }, 2000);
       }else{
-        window.location.href = '/sms-verification';//in future change to order
+        window.location.href = '/';//in future change to order
         localStorage.setItem('userAuthToken', JSON.parse(response).auth_token);
         document.getElementById("_loader").className = '';
       }

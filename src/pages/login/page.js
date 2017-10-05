@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from 'redux';
@@ -21,22 +22,29 @@ class LoginPage extends Component{
     console.log(response);
   }
   render(){
-    return(
-      <div className='content' id="loginPage">      
-        <div className='logo-icon'><Link to="/"><img src={logo} alt="Budsy"/></Link></div>  
-        <h1 className='heading'>Login to your budsy</h1>
-        <Provider store={store}>
-          <LoginForm></LoginForm>
-        </Provider>
-        <FacebookLogin
-        appId="1450484624999997"
-        autoLoad={true}
-        fields="name,email,picture"
-        callback={this.responseFacebook}
-        cssClass="a-btn fblogin" />
-         <p className='signup-text'>Don't have an account? <Link to="/register" className="signup">Sign up</Link></p>
-      </div>
-    )    
+    // console.log(localStorage.getItem('userAuthToken'));  
+    if(localStorage.getItem('userAuthToken') === '' || localStorage.getItem('userAuthToken') === null){      
+      return(
+        <div className='content' id="loginPage">      
+          <div className='logo-icon'><Link to="/"><img src={logo} alt="Budsy"/></Link></div>  
+          <h1 className='heading'>Login to your budsy</h1>
+          <Provider store={store}>
+            <LoginForm props></LoginForm>
+          </Provider>
+          <FacebookLogin
+          appId="1450484624999997"
+          autoLoad={true}
+          fields="name,email,picture"
+          callback={this.responseFacebook}
+          cssClass="a-btn fblogin" />
+           <p className='signup-text'>Don't have an account? <Link to="/register" className="signup">Sign up</Link></p>
+        </div>
+      )
+    }else{
+      return(        
+        <Redirect to='/'/>        
+      )
+    }   
   }
 }
 export default LoginPage;
