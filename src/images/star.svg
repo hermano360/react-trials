@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>star filled</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.199999988">
+        <g id="Ratings/Stars" transform="translate(-60.000000, 0.000000)" fill="#FFFFFF">
+            <polyline id="star-filled" points="67 10.16 71.326 13.31 69.66 8.22 74 5.09 68.643 5.1 67 0 65.356 5.1 60 5.09 64.34 8.22 62.674 13.31 67 10.16"></polyline>
+        </g>
+    </g>
+</svg>

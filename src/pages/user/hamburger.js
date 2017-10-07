@@ -1,9 +1,9 @@
 function hamburger(){
-	var _body = document.body;
-	if(_body.className === ''){
-		_body.className = '_sidebar-open';
+	var _root = document.getElementsByTagName( 'html' )[0];
+	if(_root.className === ''){
+		_root.className = '_sidebar-open';
 	}else{
-		_body.className = '';
+		_root.className = '';
 	}
 	
 }

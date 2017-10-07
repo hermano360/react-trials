@@ -6,19 +6,21 @@ import logo from '../images/logo.png';
 // between routes.
 class Sidebar extends Component{	
 	handleClick(){
-		console.log('yes');
-		document.body.className = '';
+		document.getElementsByTagName( 'html' )[0].className = '';
+	}
+	logout(){
+		localStorage.removeItem('userAuthToken');
 	}
 	render(){
 		return(
 			<div className="sidebar">
-				<div className='logo'><img src={logo} alt="Budsy"/></div>
+				<div className='logo' onClick={this.handleClick}><Link to='/'><img src={logo} alt="Budsy"/></Link></div>
 			    <nav>
 					<ul onClick={this.handleClick}>
-						<li><Link to='/'>My Reviews</Link></li>
+						<li><Link to='/reviews'>My Reviews</Link></li>
 						<li><Link to='/preferences'>My Preferences</Link></li>
 						<li><Link to='/register'>My Orders</Link></li>
-						<li><Link to='/register'>Logout</Link></li>
+						<li><Link to='/'><span onClick={this.logout}>Logout</span></Link></li>
 					</ul>
 			    </nav>
 			</div>
