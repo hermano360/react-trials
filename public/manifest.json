@@ -43,8 +43,11 @@
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": ".",
   "display": "standalone",
+  "related_applications": [{
+    "platform": "web"
+  }],
   "theme_color": "#10042b",
   "background_color": "#ffffff"
 }
