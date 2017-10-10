@@ -41,6 +41,8 @@ export default function register() {
         checkValidServiceWorker(swUrl);
       }
     });
+  }else{
+    console.log('cannot install SW: ' + process.env.NODE_ENV);
   }
 }
 
