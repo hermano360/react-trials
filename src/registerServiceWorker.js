@@ -20,7 +20,7 @@ const isLocalhost = Boolean(
 
 export default function register() {
   console.log(process.env.NODE_ENV);
-  // if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
@@ -41,9 +41,9 @@ export default function register() {
         checkValidServiceWorker(swUrl);
       }
     });
-  // }else{
-  //   console.log('cannot install SW: ' + process.env.NODE_ENV);
-  // }
+  }else{
+    console.log('cannot install SW: ' + process.env.NODE_ENV);
+  }
 }
 
 function registerValidSW(swUrl) {

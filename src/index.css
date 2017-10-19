@@ -17,6 +17,10 @@ body {
   font-family: "Bebas Neue Regular", Helvetica, Arial, sans-serif;
   /*overflow: hidden;*/
   background: #0D1329;
+  color: #9DA1B1;
+}
+.hide{
+  display: none;
 }
 ._sidebar-open, ._sidebar-open body{
   overflow: hidden;
@@ -34,6 +38,15 @@ body {
 .no-padding{
   padding: 0 !important;
 }
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+.text-center{
+  text-align: center;
+}
 .loader-logo { animation: logo-spin infinite 5s linear; height: 80px; }
 @keyframes logo-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 a{
@@ -50,7 +63,7 @@ h1{
   top: 0;
   left: -100vw;
   background: #0D1329;
-  padding: 0 8vw;
+  padding: 0 5vw;
   transition: all 0.3s ease-in-out;
 }
 nav{
@@ -164,7 +177,7 @@ body main {
 .content{
 	min-height: 100vh;
 	width: 100%;
-	padding: 0 8vw;
+	padding: 0 5vw;
   padding-bottom: 20px !important;
   background: #ffffff;
 }
@@ -345,58 +358,19 @@ input[type="email"]{
     background: #fff;
     padding: 0px 20px;
 }
-#registerPage .oroption:after{
-    content: '';
-    display: block;
-    height: 1px;
-    background: #d7d9db;
-    margin-top: -8px;
-}
-#registerPage .rtsignup{
-  margin-top: 20px !important;
-}
-#registerPage .signin{
-  font-size: 3.36vw;
-  color: #8a898e;
-  margin-top: 4.5vh;
-  font-family: 'Lato', sans-serif;
-}
-#registerPage .signinlink{
-  cursor: pointer;
-}
-.logo-icon{
-    padding-top: 3.2vh;
-}
-.field__error{
-	font-size: 12px;
-	font-family: 'Lato', sans-serif;
-	color: red;
-	text-align: left;
-	display: block;
-	margin-top: -10px;
-    margin-bottom: 10px;
-}
-._v_screens .heading{
-  font-size: 5.04vw;
-  text-transform: uppercase;
-  color: #0d1329;
-  padding: 2vh 0 7vh;
-  letter-spacing: 2px;
-}
-._v_screens .tagline{
-  font-size: 3.12vw;
-  color: #7f7f7f;
-  line-height: 2;
-  padding-bottom: 5vh;
-  font-family: 'Lato', sans-serif;
-}
-#smsVerificationPage .a-btn{
-  margin-top: 30px;
-}
+#registerPage .oroption:after{ content: ''; display: block; height: 1px; background: #d7d9db; margin-top: -8px; } 
+#registerPage .rtsignup{ margin-top: 20px !important; }
+#registerPage .signin{ font-size: 3.36vw; color: #8a898e; margin-top: 4.5vh; font-family: 'Lato', sans-serif; }
+#registerPage .signinlink{ cursor: pointer; }
+.logo-icon{ padding-top: 3.2vh; }
+.field__error{ font-size: 12px;	font-family: 'Lato', sans-serif; color: red; text-align: left; display: block; margin-top: -10px; margin-bottom: 10px; }
+._v_screens .heading{ font-size: 5.04vw; text-transform: uppercase; color: #0d1329; padding: 2vh 0 7vh; letter-spacing: 2px; }
+._v_screens .tagline{ font-size: 3.12vw; color: #7f7f7f; line-height: 2; padding-bottom: 5vh; font-family: 'Lato', sans-serif; }
+#smsVerificationPage .a-btn{ margin-top: 30px; }
 /*Setup Screens*/
 ._setup_screen, ._user_screen{ padding: 0; background: #0D1329;}
 ._setup_screen .heading, ._user_screen .heading{ font-size: 5.6vw; color: #0D1329; padding: 2vh 0; background: #ffffff; letter-spacing: 1px; }
-._setup_screen .inner_content, ._user_screen .inner_content{ padding: 0 8vw; }
+._setup_screen .inner_content, ._user_screen .inner_content{ padding: 0 5vw; }
 ._setup_screen .inner_content .tagline{ font-size: 3.47vw; color: #9da1b1; font-family: 'Lato', sans-serif; margin-top: 6.3vh; margin-bottom: 7vh; line-height: 2; }
 ._options_box{ text-align: left; margin-bottom: 3.3vh;  }
 ._options_box h2{ color: #fff; font-size: 4.4vw; letter-spacing: 1px; }
@@ -416,7 +390,7 @@ input[type="email"]{
 .stepsContainer .step-3 .upperSection .stepsIcon{ width: 38.4vw; left: 30.8vw; bottom: -3.6vh; }
 .stepsContainer .step-4 .upperSection img{visibility: hidden;}
 .stepsContainer .step-4 .upperSection span{ position: absolute; left: 0; color: #6EC572; font-family: 'Lato', sans-serif; font-size: 6vw; width: 100%; top: 25.5vh;}
-.stepsContainer .lowerSection{ padding: 0 8vw; }
+.stepsContainer .lowerSection{ padding: 0 5vw; }
 .stepsContainer .stepsCount{ color: #9DA1B1; font-size: 4.8vw; margin-top: 12.5vh; }
 .stepsContainer .stepsCount ._active{ color: #ffffff; }
 .stepsContainer p.tagline{ margin-top: 2.5vh !important; margin-bottom: 5vh !important; }
@@ -442,20 +416,41 @@ input[type="email"]{
 #myPreferences ._buzzwords{ margin-bottom: 5vh; }
 #myPreferences ._price_range{ margin-bottom: 7vh; }
 #buzzwordsLoading._buzzwords li{ filter: blur(2px); }
-._bw_block{ margin-top: 1.5vh; }
-._bw_block h3{ margin-top: 1.5vh; color: #fff; font-size: 4vw; text-transform: capitalize; font-family: 'Lato', sans-serif; margin-bottom: 1.5vh;}
+._bw_block{ margin-top: 2vh; }
+._bw_block h3,
+._bw_block h4{ margin-top: 1.5vh; color: #fff; font-size: 4vw; text-transform: capitalize; font-family: 'Lato', sans-serif; margin-bottom: 1.5vh;}
 ._bw_block ul{ margin-top: 0; }
+._strains_block{ margin-top: 4vh; margin-bottom: 8vh; }
+._strains_block > div{ float: left; margin-right: 20px; position: relative; text-align: center; }
+._strains_block > div h5{ font-family: "Lato"; font-size: 2.8vw; margin-top: 8px; }
+._strains_block > div input{ margin-left: 0 !important; margin-top: -8px !important; top: 50%; left: 50%; transform: translate(-50%, -50%); margin-bottom: 0 !important;}
 /**Reviews**/
 #myReviews .inner_content{ margin-top: 8.5vh; }
 ._accordian_trigger{ text-align: left; padding-bottom: 20px; border-bottom: 1px solid #191f35; cursor: pointer; background: url(./images/down-arrow.svg) no-repeat top 14px right;}
 ._accordian_trigger.active{ background: url(./images/up-arrow.svg) no-repeat top 14px right; }
 ._r_date{ font-size: 4.8vw; color: #9DA1B1; width: 23vw; display: inline-block; vertical-align: bottom; }
-._r_order_no{ font-size: 6vw; color: #fff; display: inline-block; vertical-align: bottom; width: 34vw; }
+._r_order_no{ font-size: 6vw; color: #fff; display: inline-block; vertical-align: bottom; width: 30vw; }
 ._ratings._r_rating{ display: inline-block; vertical-align: -webkit-baseline-middle; position: relative;}
 ._ratings ._fill{ width: 0; height: 100%; left: 0; position: absolute; overflow: hidden; }
-._ratings ._empty i, ._ratings ._fill i { width: 1.5vh; height: 1.5vh; display: inline-block; margin-right: 2px; background: url(./images/star.svg) no-repeat;  background-size: 100%; }
+._ratings ._empty i, ._ratings ._fill i { width: 1.8vh; height: 1.8vh; display: inline-block; margin-right: 2px; background: url(./images/star.svg) no-repeat;  background-size: 100%; }
 ._ratings ._fill i { background: url(./images/star-filled.svg) no-repeat; background-size: 100%; }
 ._accordian_content{ max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; margin-bottom: 20px;}
+._accordian_content ul { margin-top: 25px; }
 ._accordian_content ul li { display: inline-block; width: 33.33%; list-style: none; }
 ._ratings_title{ color: #fff; font-family: 'Lato', sans-serif; font-size: 4vw; margin-top: 1vh; }
-._r_description{ text-align: left; color: #ffffff; font-family: "Lato"; font-size: 3.5vw; margin-top: 5vh; }
+._r_description{ text-align: left; color: #ffffff; font-family: "Lato"; font-size: 3.5vw; margin-top: 5vh; margin-bottom: 20px;}
+.write_review p{ font-family: 'Lato', sans-serif; font-size: 3.47vw; }
+._reviews-fieldset > ul{ list-style: none; margin-top: 5vh; }
+._reviews-fieldset > ul > li{ padding: 23px; border-bottom: 1px solid #181e34; }
+._reviews-fieldset > ul li.smoke h3,
+._reviews-fieldset > ul li.overall h3{ float: left; }
+.star-ratings{ float: right; }
+._reviews-fieldset ul ._options_box{ margin-bottom: 0; }
+._reviews-fieldset ul ._options_box ul{ margin-top: 0; }
+._reviews-fieldset ul ._options_box ul li{ height: 7vh; margin-bottom: 0;}
+._reviews-fieldset ul ._options_box ul li label{ font-size: 3vw; line-height: 7vh; }
+._reviews-fieldset ._high_options h3 { margin-bottom: 10px; }
+._reviews-fieldset h3{ font-size: 4.32vw; color: #fff; letter-spacing: 1px; font-weight: lighter; }
+._review_buzzwords{ margin-top: 4vh; }
+._additional_comments { padding-top: 10px; }
+._additional_comments textarea{ background: transparent; border-color: rgba(255,255,255,0.2); resize: none; width: 100%; height: 80px; padding: 8px; font-size: 12px; font-family: Lato; color: #939DA6; margin-top: 25px; outline: none; }

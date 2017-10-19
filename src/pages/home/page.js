@@ -10,7 +10,7 @@ class App extends Component {
     return(
       <div>      
         <div className='logo'><img src={logo} alt="Budsy"/></div>        
-        <img className="_order_now_btn" src={OrderButton} alt="Order Now"/>
+        <img className="_order_now_btn" src={OrderButton} alt="Order Now" onClick={this.handleSubmit}/>
         <p className='tagline'>Use the button above to order your high</p>
       </div>
       )
@@ -43,6 +43,28 @@ class App extends Component {
         </div>
       )
     } 
+  }
+  handleSubmit(){
+    var authToken = 'Token ' + localStorage.getItem('userAuthToken');
+    document.getElementById("_loader").className = '_show';
+    var obj = {"device_tag" : "12345"};  
+    var data = JSON.stringify(obj);
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText)
+       // var response = JSON.parse(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "https://budsy-staging.mybluemix.net/api/v0/order/start/");
+    xhr.setRequestHeader("authorization", authToken);
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.send(data);
   } 
 }
 

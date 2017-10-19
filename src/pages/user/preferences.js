@@ -1,95 +1,84 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import InputRange from 'react-input-range';
-// import Hamburger from '../user/hamburger';
+import Knob from 'react-canvas-knob';
 import  'react-input-range/lib/css/index.css';
 import Hamburger from '../user/hamburger';
+
+
+var authToken = 'Token ' + localStorage.getItem('userAuthToken'),
+    createdAlready = false; 
 
 class MyPreferencesPage extends Component{
   constructor(props) {
     super(props);
     // console.log(props);  
-    this.state = {
+    this.state = {  
+      knobValSatvia: 50, 
+      knobValHybrid: 30, 
+      knobValIndica: 20,     
+      knobSettings:{        
+        knobWidth: 75,
+        knobHeight: 75,
+        knobThickness: 0.08,
+        knobBgColor: "#555b71",
+        knobFgColor: "#69ca69"
+      },
       value: { min: 40, max: 60 },      
       buzzwords: [
         {
-          "Category 1": [
-            "Buzzowrd 1",
-            "Buzzowrd 2"            
+          "words": [
+              "Buzzword",
+              "Buzzword 2"              
           ],
-          "Category 2": [
-            "Buzzowrd 3",
-            "Buzzowrd 4"
-          ]
+          "category": "Category Name"
         }
       ],
       buzzwordStatus: 'buzzwordsLoading'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeSatvia = this.handleChangeSatvia.bind(this);
+    this.handleChangeHybrid = this.handleChangeHybrid.bind(this);
+    this.handleChangeIndica = this.handleChangeIndica.bind(this);    
   }
   componentWillMount(){
-    // alert('yes');
-    // console.log(this.state.shiv)
     var _this = this;
-    setTimeout(function(){
-      _this.setState({
-        buzzwords: [
-          {
-            "effects": [
-              "uplifted",
-              "relaxed",
-              "happy",
-              "euphoric",
-              "giggly",
-              "creative",
-              "aroused",
-              "hungry",
-              "long lasting",
-              "mellow",
-              "motivation",
-              "sociable",
-              "calming",
-              "heavy",
-              "focus",
-              "energy",
-              "cerebral"
-            ],
-            "negatives": [
-              "dry mouth",
-              "dizzy",
-              "paranoid",
-              "dry eyes",
-              "anxious"
-            ],
-            "flavor": [
-              "chemical",
-              "nutty",
-              "spicy",
-              "sweet",
-              "wood",
-              "dairy",
-              "citrus",
-              "tropical",
-              "floral",
-              "berries",
-              "herb",
-              "leafy",
-              "earthy"
-            ]
-          }
-        ],
-        buzzwordStatus: 'buzzwordsLoaded'
-      });      
-    }, 2000)
+    var data = null;
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        var buzz = JSON.parse(this.responseText).data;
+        for(var i = 0; i < buzz.length; i++) {
+          var obj = buzz[i];
+          if(obj.category === 'negatives'){
+            buzz.splice(i,1);
+          }            
+        }
+        _this.setState({buzzwords: buzz, buzzwordStatus: 'buzzwordsLoaded'});
+      }
+    });
+
+    xhr.open("GET", "https://budsy-staging.mybluemix.net/api/v0/customer/utils/buzzword/");
+    xhr.setRequestHeader("authorization", authToken);
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.send(data);   
     
-    
+  }  
+  handleChangeSatvia = (newValue) => {
+    this.setState({knobValSatvia: newValue});
   }
-  componentDidMount(){
-    // console.log(this.state.shiv)
+  handleChangeHybrid = (newValue) => {
+    this.setState({knobValHybrid: newValue});
+  }
+  handleChangeIndica = (newValue) => {
+    this.setState({knobValIndica: newValue});
   }   
   render(){   
-    var buzzwordsCat = this.state.buzzwords[0];
-    var buzzwordsTitle = Object.keys(buzzwordsCat);  
+    var buzzwords = this.state.buzzwords;   
+    
     return(
       <div className='content _user_screen' id="myPreferences">   
         <div className="_hamburger" onClick={Hamburger}><span className="_top_line"></span><span className="_middle_line"></span><span className="_bottom_line"></span></div>
@@ -99,28 +88,64 @@ class MyPreferencesPage extends Component{
             <div className="_options_box">
               <h2>Strains</h2>
               <p>Select your preference of strain</p> 
+              <div className="_strains_block clearfix">
+                <div className="satvia">
+                  <Knob
+                    value={this.state.knobValSatvia}
+                    width={this.state.knobSettings.knobWidth}
+                    height={this.state.knobSettings.knobHeight}
+                    fgColor={this.state.knobSettings.knobFgColor}
+                    bgColor={this.state.knobSettings.knobBgColor} 
+                    thickness={this.state.knobSettings.knobThickness}
+                    onChange={this.handleChangeSatvia}
+                  />
+                  <h5>Satvia</h5>
+                </div>
+                <div className="hybrid">
+                  <Knob
+                    value={this.state.knobValHybrid}
+                    width={this.state.knobSettings.knobWidth}
+                    height={this.state.knobSettings.knobHeight}
+                    fgColor={this.state.knobSettings.knobFgColor}
+                    bgColor={this.state.knobSettings.knobBgColor} 
+                    thickness={this.state.knobSettings.knobThickness}
+                    onChange={this.handleChangeHybrid}
+                  />
+                  <h5>Hybrid</h5>
+                </div>
+                <div className="indica">
+                  <Knob
+                    value={this.state.knobValIndica}
+                    width={this.state.knobSettings.knobWidth}
+                    height={this.state.knobSettings.knobHeight}
+                    fgColor={this.state.knobSettings.knobFgColor}
+                    bgColor={this.state.knobSettings.knobBgColor} 
+                    thickness={this.state.knobSettings.knobThickness}
+                    onChange={this.handleChangeIndica}
+                  />
+                  <h5>Indica</h5>
+                </div>
+              </div>
             </div> 
             <div className="_options_box _buzzwords" id={this.state.buzzwordStatus}>
               <h2>Buzzwords</h2>
               <p>Select 3 words that suit your high</p>
-              {buzzwordsTitle.map(function(name, i){
-                  if(name !== 'negatives'){
-                    var blockClass = "_bw_block _" + name + "_block";
-                    return <div key={name} className={blockClass}>
-                      <h3>{name}</h3>
-                      <ul className="clearfix">                      
-                        {buzzwordsCat[name].map(function(val, i){          
-                            if(i <= 1){
-                              return <li key={val}>
-                                  <input type="checkbox" value={val} name="buzzwords" id={val} />
-                                  <label htmlFor={val}>{val}</label>
-                                </li> 
-                            }
-                        })}
-                      </ul>
-                      </div>
-                  }                  
-              })}              
+              {buzzwords.map(function(name, i){
+                var blockClass = "_bw_block _" + name.category + "_block";
+                return <div key={name.category} className={blockClass}>
+                  <h3>{name.category}</h3>
+                  <ul className="clearfix">                     
+                    {name.words.map(function(word, j){          
+                        if(j <= 1){
+                          return <li key={word}>
+                              <input type="checkbox" value={word} name="buzzwords" id={word} data-buzz-category={name.category} />
+                              <label htmlFor={word}>{word}</label>
+                            </li> 
+                        }
+                    })}
+                  </ul>
+                  </div>                
+              })}     
             </div>            
             <div className="_options_box _price_range">
               <h2>Price Range</h2>
@@ -139,8 +164,49 @@ class MyPreferencesPage extends Component{
     )      
   } 
   handleSubmit(){
-    // alert('yes');
-    console.log(this.state.value)
+    var _this = this,
+        selectedBuzzwords= [],
+        obj1 = {},
+        buzzwordsCheckbox = document.getElementsByName('buzzwords'),
+        method = "POST",
+        sendTo = "https://budsy-staging.mybluemix.net/api/v0/customer/preferences/create/";
+    if(createdAlready){
+      method = "PUT",
+      sendTo = "https://budsy-staging.mybluemix.net/api/v0/customer/preferences/update/"
+    }
+
+    for (var i=0; i<buzzwordsCheckbox.length; i++) {
+       if (buzzwordsCheckbox[i].checked) {
+          obj1['name' + i] = buzzwordsCheckbox[i].getAttribute("value");         
+       }
+    }
+    selectedBuzzwords.push(obj1);
+    var obj = {
+      "strain": {
+        "Sativa" : _this.state.knobValSatvia/100,
+        "Indica" : _this.state.knobValIndica/100,
+        "Hybrid" : _this.state.knobValHybrid/100
+      },
+      "price_point": _this.state.value,
+      "buzzwords" :  selectedBuzzwords             
+    }
+
+    var data = JSON.stringify(obj);
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText);        
+      }
+    });
+
+    xhr.open(method, sendTo);
+    xhr.setRequestHeader("authorization", authToken);
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.send(data);
+
   } 
 }
 export default MyPreferencesPage;
