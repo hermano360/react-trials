@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import InputRange from 'react-input-range';
-import Knob from 'react-canvas-knob';
+// import Knob from 'react-canvas-knob';
 import  'react-input-range/lib/css/index.css';
-import Hamburger from '../user/hamburger';
+import Hamburger from '../user/hamburger'; 
 
 
 var authToken = 'Token ' + localStorage.getItem('userAuthToken'),
@@ -88,44 +88,7 @@ class MyPreferencesPage extends Component{
             <div className="_options_box">
               <h2>Strains</h2>
               <p>Select your preference of strain</p> 
-              <div className="_strains_block clearfix">
-                <div className="satvia">
-                  <Knob
-                    value={this.state.knobValSatvia}
-                    width={this.state.knobSettings.knobWidth}
-                    height={this.state.knobSettings.knobHeight}
-                    fgColor={this.state.knobSettings.knobFgColor}
-                    bgColor={this.state.knobSettings.knobBgColor} 
-                    thickness={this.state.knobSettings.knobThickness}
-                    onChange={this.handleChangeSatvia}
-                  />
-                  <h5>Satvia</h5>
-                </div>
-                <div className="hybrid">
-                  <Knob
-                    value={this.state.knobValHybrid}
-                    width={this.state.knobSettings.knobWidth}
-                    height={this.state.knobSettings.knobHeight}
-                    fgColor={this.state.knobSettings.knobFgColor}
-                    bgColor={this.state.knobSettings.knobBgColor} 
-                    thickness={this.state.knobSettings.knobThickness}
-                    onChange={this.handleChangeHybrid}
-                  />
-                  <h5>Hybrid</h5>
-                </div>
-                <div className="indica">
-                  <Knob
-                    value={this.state.knobValIndica}
-                    width={this.state.knobSettings.knobWidth}
-                    height={this.state.knobSettings.knobHeight}
-                    fgColor={this.state.knobSettings.knobFgColor}
-                    bgColor={this.state.knobSettings.knobBgColor} 
-                    thickness={this.state.knobSettings.knobThickness}
-                    onChange={this.handleChangeIndica}
-                  />
-                  <h5>Indica</h5>
-                </div>
-              </div>
+              
             </div> 
             <div className="_options_box _buzzwords" id={this.state.buzzwordStatus}>
               <h2>Buzzwords</h2>

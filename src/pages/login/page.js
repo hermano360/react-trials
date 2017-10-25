@@ -17,10 +17,44 @@ const store = (window.devToolsExtension
   : createStore)(reducer);
 
 
-class LoginPage extends Component{
+class LoginPage extends Component{  
   responseFacebook(response){
-    console.log(response);
-  }
+    console.log(response.accessToken);
+
+    document.getElementById("_loader").className = '_show';
+    var obj = {
+      "provider": "facebook",
+      "facebook_tok": response.accessToken
+    };  
+    var data = JSON.stringify(obj);
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText)
+        var response = this.responseText;        
+        if(JSON.parse(response).status === 'Success'){
+          localStorage.setItem('userAuthToken', JSON.parse(response).token);
+          localStorage.setItem('socialUser', 'true');
+          document.getElementById("_loader").className = '';
+          window.location.href = '/';
+        }else if(JSON.parse(response).status === 'Success'){
+            localStorage.setItem('userAuthToken', JSON.parse(response).token);
+            localStorage.setItem('socialUser', 'true');
+            window.location.href = '/';
+        }else{
+            document.getElementById("_loader").className = '';
+        }        
+      }
+    });
+
+    xhr.open("POST", "https://budsy-staging.mybluemix.net/api/v0/auth/customer/social/");
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.send(data);
+  }  
   render(){
     // console.log(localStorage.getItem('userAuthToken'));  
     if(localStorage.getItem('userAuthToken') === '' || localStorage.getItem('userAuthToken') === null){      
@@ -32,9 +66,8 @@ class LoginPage extends Component{
             <LoginForm props></LoginForm>
           </Provider>
           <FacebookLogin
-          appId="1450484624999997"
-          autoLoad={true}
-          fields="name,email,picture"
+          appId="815418658634255"
+          fields="name,email"
           callback={this.responseFacebook}
           cssClass="a-btn fblogin" />
            <p className='signup-text'>Don't have an account? <Link to="/register" className="signup">Sign up</Link></p>

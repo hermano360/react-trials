@@ -10,6 +10,8 @@ import ButtonRegistration from '../pages/button/registration';
 import SetupSteps from '../pages/button/setupSteps';
 import Preferences from '../pages/user/preferences';
 import Reviews from '../pages/user/reviews';
+import WriteReviews from '../pages/user/write-review';
+import Order from '../pages/user/orders';
 
 
 const Main = (props) => (
@@ -25,6 +27,8 @@ const Main = (props) => (
       <Route path='/setup-steps' name="button setup step one" component={SetupSteps}/>
       <Route path='/preferences' name="preferences" component={Preferences}/>
       <Route path='/reviews' name="reviews" component={Reviews}/>
+      <Route path='/write-reviews' name="writereviews" component={WriteReviews}/>
+      <Route path='/orders' name="order" component={Order}/>
     </Switch>
   </main>
 )

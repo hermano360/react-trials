@@ -15,6 +15,15 @@ const store = (window.devToolsExtension
   : createStore)(reducer);
 
 class RegisterPage extends Component{
+  constructor(props){
+    super();
+    this.state = {
+      shiv: 'yesyesy'
+    }
+  }
+  responseFacebook(response){
+    console.log(response);    
+  }
   render(){
     return(
       <div className='content' id="registerPage">
@@ -24,7 +33,7 @@ class RegisterPage extends Component{
         <FacebookLogin
           appId="815418658634255"
           autoLoad={true}
-          fields="name,email,picture"
+          fields="name,email,first_name"
           callback={this.responseFacebook}
           cssClass="a-btn fblogin"
           textButton="Register with facebook" />

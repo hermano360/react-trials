@@ -6,6 +6,9 @@ import OrderButton from '../../images/order.png';
 import Hamburger from '../user/hamburger';
 
 class App extends Component {
+  constructor(props){
+    super();
+  }
   renderIfLoggedIn(){
     return(
       <div>      
@@ -47,7 +50,7 @@ class App extends Component {
   handleSubmit(){
     var authToken = 'Token ' + localStorage.getItem('userAuthToken');
     document.getElementById("_loader").className = '_show';
-    var obj = {"device_tag" : "12345"};  
+    var obj = {"device_tag" : "virtual_button"};  
     var data = JSON.stringify(obj);
 
     var xhr = new XMLHttpRequest();
@@ -56,7 +59,6 @@ class App extends Component {
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         console.log(this.responseText)
-       // var response = JSON.parse(this.responseText);
       }
     });
 
