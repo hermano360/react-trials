@@ -2,8 +2,6 @@
 import global from '../../components/common';
 
 function submit(values) {
-  console.log(values);
-  console.log(this);
   document.getElementById("_loader").className = '_show';
   var data = JSON.stringify(values)
   var xhr = new XMLHttpRequest();
