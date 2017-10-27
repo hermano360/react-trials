@@ -13,7 +13,6 @@ import Reviews from '../pages/user/reviews';
 import WriteReviews from '../pages/user/write-review';
 import Order from '../pages/user/orders';
 
-
 const Main = (props) => (
   <main>  
     <Switch>

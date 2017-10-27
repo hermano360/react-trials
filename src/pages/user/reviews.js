@@ -15,7 +15,8 @@ class MyReviewsPage extends Component{
             "high": "body",
             "harshness": "harsh",
             "additional_comments": "it was a not quality product",
-            "strainName": "strain 1"
+            "strainName": "strain 1",
+            "created":"2017-10-30"
         },
         {
             "order_id": 2,
@@ -23,7 +24,8 @@ class MyReviewsPage extends Component{
             "high": "body",
             "harshness": "harsh",
             "additional_comments": "shitty product",
-            "strainName": "strain 1"
+            "strainName": "strain 1",
+            "created":"2017-10-29"
         },
         {
             "order_id": 3,
@@ -31,7 +33,8 @@ class MyReviewsPage extends Component{
             "high": "body",
             "harshness": "harsh",
             "additional_comments": "shitty product",
-            "strainName": "strain 1"
+            "strainName": "strain 1",
+            "created":"2017-10-28"
         }
       ],
       feedbackStatus: 'feedbackLoading'
@@ -63,7 +66,6 @@ class MyReviewsPage extends Component{
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         var feed = JSON.parse(this.responseText).data;  
-        console.log(feed);      
         _this.setState({feedback: feed, feedbackStatus: 'feedbackLoaded'});
       }
     });
@@ -82,11 +84,12 @@ class MyReviewsPage extends Component{
         <div className="_hamburger" onClick={Hamburger}><span className="_top_line"></span><span className="_middle_line"></span><span className="_bottom_line"></span></div> 
         <h1 className='heading'>My Reviews</h1>
         <div className="inner_content"> 
-          <div className={this.state.feedbackStatus + ' _accordian'}>
+          <div className={this.state.feedbackStatus + ' _accordian'}>          
             {feedback.map(function(name, i){
+              var created = name.created.split("T")[0];
               return <div key={'order' + name.order_id}>
                 <div className="_accordian_trigger">
-                  <p className="_r_date">08.07.2017</p>
+                  <p className="_r_date">{created}</p>
                   <p className="_r_order_no">Order {name.order_id}</p>
                   <div className="_ratings _r_rating">
                     <StarRatings

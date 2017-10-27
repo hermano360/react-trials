@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import InputRange from 'react-input-range';
 // import Knob from 'react-canvas-knob';
+import Knob from '../knob/index';
 import  'react-input-range/lib/css/index.css';
 import Hamburger from '../user/hamburger'; 
-
+import global from '../../components/common';
 
 var authToken = 'Token ' + localStorage.getItem('userAuthToken'),
     createdAlready = false; 
@@ -11,7 +12,7 @@ var authToken = 'Token ' + localStorage.getItem('userAuthToken'),
 class MyPreferencesPage extends Component{
   constructor(props) {
     super(props);
-    // console.log(props);  
+
     this.state = {  
       knobValSatvia: 50, 
       knobValHybrid: 30, 
@@ -40,7 +41,28 @@ class MyPreferencesPage extends Component{
     this.handleChangeHybrid = this.handleChangeHybrid.bind(this);
     this.handleChangeIndica = this.handleChangeIndica.bind(this);    
   }
+  getPreferences(){
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        // console.log(JSON.parse(this.responseText).detail);
+        if(this.status !== 404){
+          createdAlready = true;
+        }else{
+          console.log('no preferences found');
+        }
+      }
+    });
+
+    xhr.open("GET", "https://budsy-staging.mybluemix.net/api/v0/customer/preferences/");
+    xhr.setRequestHeader("authorization", authToken);
+
+    xhr.send();
+  }
   componentWillMount(){
+    this.getPreferences();
     var _this = this;
     var data = null;
 
@@ -48,15 +70,23 @@ class MyPreferencesPage extends Component{
     xhr.withCredentials = true;
 
     xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === 4) {
-        var buzz = JSON.parse(this.responseText).data;
-        for(var i = 0; i < buzz.length; i++) {
-          var obj = buzz[i];
-          if(obj.category === 'negatives'){
-            buzz.splice(i,1);
-          }            
-        }
-        _this.setState({buzzwords: buzz, buzzwordStatus: 'buzzwordsLoaded'});
+      if (this.readyState === 4) {        
+        if(this.status === 400){
+          document.getElementById("_global_errors").innerHTML = "Internal Server Error. Please try again.";
+          document.getElementById("_global_errors").className = '_global_errors';
+          setTimeout(function(){
+            document.getElementById("_global_errors").className = '';
+          }, 2000);          
+        }else{
+          var buzz = JSON.parse(this.responseText).data;
+          for(var i = 0; i < buzz.length; i++) {
+            var obj = buzz[i];
+            if(obj.category === 'negatives'){
+              buzz.splice(i,1);
+            }            
+          }
+          _this.setState({buzzwords: buzz, buzzwordStatus: 'buzzwordsLoaded'});
+        }        
       }
     });
 
@@ -64,8 +94,7 @@ class MyPreferencesPage extends Component{
     xhr.setRequestHeader("authorization", authToken);
     xhr.setRequestHeader("content-type", "application/json");
 
-    xhr.send(data);   
-    
+    xhr.send(data);       
   }  
   handleChangeSatvia = (newValue) => {
     this.setState({knobValSatvia: newValue});
@@ -78,7 +107,6 @@ class MyPreferencesPage extends Component{
   }   
   render(){   
     var buzzwords = this.state.buzzwords;   
-    
     return(
       <div className='content _user_screen' id="myPreferences">   
         <div className="_hamburger" onClick={Hamburger}><span className="_top_line"></span><span className="_middle_line"></span><span className="_bottom_line"></span></div>
@@ -88,7 +116,44 @@ class MyPreferencesPage extends Component{
             <div className="_options_box">
               <h2>Strains</h2>
               <p>Select your preference of strain</p> 
-              
+              <div className="_strains_block clearfix">
+                <div className="satvia">
+                  <Knob
+                    value={this.state.knobValSatvia}
+                    width={this.state.knobSettings.knobWidth}
+                    height={this.state.knobSettings.knobHeight}
+                    fgColor={this.state.knobSettings.knobFgColor}
+                    bgColor={this.state.knobSettings.knobBgColor} 
+                    thickness={this.state.knobSettings.knobThickness}
+                    onChange={this.handleChangeSatvia}
+                  />
+                  <h5>Satvia</h5>
+                </div>
+                <div className="hybrid">
+                  <Knob
+                    value={this.state.knobValHybrid}
+                    width={this.state.knobSettings.knobWidth}
+                    height={this.state.knobSettings.knobHeight}
+                    fgColor={this.state.knobSettings.knobFgColor}
+                    bgColor={this.state.knobSettings.knobBgColor} 
+                    thickness={this.state.knobSettings.knobThickness}
+                    onChange={this.handleChangeHybrid}
+                  />
+                  <h5>Hybrid</h5>
+                </div>
+                <div className="indica">
+                  <Knob
+                    value={this.state.knobValIndica}
+                    width={this.state.knobSettings.knobWidth}
+                    height={this.state.knobSettings.knobHeight}
+                    fgColor={this.state.knobSettings.knobFgColor}
+                    bgColor={this.state.knobSettings.knobBgColor} 
+                    thickness={this.state.knobSettings.knobThickness}
+                    onChange={this.handleChangeIndica}
+                  />
+                  <h5>Indica</h5>
+                </div>
+              </div>
             </div> 
             <div className="_options_box _buzzwords" id={this.state.buzzwordStatus}>
               <h2>Buzzwords</h2>
@@ -134,8 +199,8 @@ class MyPreferencesPage extends Component{
         method = "POST",
         sendTo = "https://budsy-staging.mybluemix.net/api/v0/customer/preferences/create/";
     if(createdAlready){
-      method = "PUT",
-      sendTo = "https://budsy-staging.mybluemix.net/api/v0/customer/preferences/update/"
+      method = "PUT";
+      sendTo = "https://budsy-staging.mybluemix.net/api/v0/customer/preferences/update/";
     }
 
     for (var i=0; i<buzzwordsCheckbox.length; i++) {
@@ -155,12 +220,15 @@ class MyPreferencesPage extends Component{
     }
 
     var data = JSON.stringify(obj);
+    console.log(data);
+    // return false;
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
-        console.log(this.responseText);        
+        var response = JSON.parse(this.responseText).status;  
+        global.globalErrorHandling(response);   
       }
     });
 

@@ -16,10 +16,7 @@ const store = (window.devToolsExtension
 
 class RegisterPage extends Component{
   constructor(props){
-    super();
-    this.state = {
-      shiv: 'yesyesy'
-    }
+    super();    
   }
   responseFacebook(response){
     console.log(response);    

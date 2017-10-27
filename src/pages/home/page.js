@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png';
 import OrderButton from '../../images/order.png';
 import Hamburger from '../user/hamburger';
+import global from '../../components/common';
 
 class App extends Component {
   constructor(props){
@@ -57,8 +58,19 @@ class App extends Component {
     xhr.withCredentials = true;
     
     xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === 4) {
-        console.log(this.responseText)
+      if (this.readyState === 4) {    
+      var response = '';    
+        if(this.status === 404){
+          response = JSON.parse(this.responseText);
+          global.globalErrorHandling(response.status);          
+        }else if(this.status === 500){
+          global.globalErrorHandling('Internal Server Error');         
+        }else{
+          response = JSON.parse(this.responseText);
+          if(response.status === 'Order Created'){
+            global.globalErrorHandling(response.status);
+          } 
+        }               
       }
     });
 
